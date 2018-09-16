@@ -37,7 +37,7 @@ node {
 node {
    stage 'deploy Canary'
    sh 'echo "write your deploy code here"; sleep 5;'
-   sh "scp *.xml localhost:/"
+   sh "scp *.xml tomcat/tomcat@18.217.198.175:/tmp/"
 
    stage 'deploy Production'
    input 'Proceed?'
