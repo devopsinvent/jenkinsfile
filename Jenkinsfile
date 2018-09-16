@@ -18,10 +18,11 @@ node {
 stage 'build'
    // set the version of the build artifact to the Jenkins BUILD_NUMBER so you can
    // map artifacts to Jenkins builds
+   sh "ansible --version"
    sh "scp *.xml tomcat/tomcat@18.217.198.175:/tmp/abc/"
    sh "${mvnHome}/bin/mvn versions:set -DnewVersion=${env.BUILD_NUMBER}"
    sh "${mvnHome}/bin/mvn package"
-   sh "ansible --version"
+   
    stage 'test'
    parallel 'test': {
      sh "${mvnHome}/bin/mvn test; sleep 2;"
